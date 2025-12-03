@@ -1,10 +1,9 @@
-#pragma once
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-const int MAX_RECORDS = 100;
-const int MAX_STRING_LENGTH = 200;
-const char* THRESHOLD_TIME = "02:50:00";
-const char* TARGET_CLUB = "Spartak";
+extern const int MAX_RECORDS;
+extern const int MAX_STRING_LENGTH;
+extern const char* THRESHOLD_TIME;
+extern const char* TARGET_CLUB;
 
 #endif

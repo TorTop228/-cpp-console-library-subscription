@@ -123,7 +123,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="constants.cpp" />
+    <ClCompile Include="file_reader.cpp" />
+    <ClCompile Include="filter.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="marathon_results.cpp" />
+    <ClCompile Include="sorter.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="data.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="constants.h" />
+    <ClInclude Include="file_reader.h" />
+    <ClInclude Include="filter.h" />
+    <ClInclude Include="marathon_results.h" />
+    <ClInclude Include="sorter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

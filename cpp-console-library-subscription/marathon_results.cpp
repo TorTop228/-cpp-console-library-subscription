@@ -2,15 +2,18 @@
 #include <iomanip>
 #include <sstream>
 
+using namespace std;  
+
+// Вычисление времени забега в секундах
 int MarathonResult::getRaceTimeInSeconds() const {
     int startHours, startMinutes, startSeconds;
     int finishHours, finishMinutes, finishSeconds;
     char colon;
 
-    std::stringstream ssStart(startTime);
+    stringstream ssStart(startTime);
     ssStart >> startHours >> colon >> startMinutes >> colon >> startSeconds;
 
-    std::stringstream ssFinish(finishTime);
+    stringstream ssFinish(finishTime);
     ssFinish >> finishHours >> colon >> finishMinutes >> colon >> finishSeconds;
 
     int startTotal = startHours * 3600 + startMinutes * 60 + startSeconds;
@@ -19,12 +22,13 @@ int MarathonResult::getRaceTimeInSeconds() const {
     return finishTotal - startTotal;
 }
 
+// Форматированный вывод
 void MarathonResult::print() const {
-    std::cout << std::setw(3) << number << ". "
+    cout << setw(3) << number << ". "
         << lastName << " "
         << firstName << " "
         << middleName << ", "
         << "Start: " << startTime << ", "
         << "Finish: " << finishTime << ", "
-        << "Club: " << club << std::endl;
+        << "Club: " << club << endl;
 }

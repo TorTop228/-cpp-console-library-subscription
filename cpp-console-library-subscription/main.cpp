@@ -7,6 +7,8 @@
 
 using namespace std;
 
+const int LOCAL_MAX_RECORDS = 100; 
+
 void printMenu() {
     cout << "\n=== Main Menu ===\n";
     cout << "1. Show all records\n";
@@ -42,7 +44,7 @@ int main()
     cout << "========================================\n\n";
 
     // Чтение данных
-    MarathonResult records[MAX_RECORDS];
+    MarathonResult records[LOCAL_MAX_RECORDS];  
     int count = 0;
 
     if (!readMarathonData("data.txt", records, count)) {
@@ -53,7 +55,7 @@ int main()
     cout << "Successfully read " << count << " records.\n";
 
     // Создаём массив указателей для операций
-    MarathonResult* recordPointers[MAX_RECORDS];
+    MarathonResult* recordPointers[LOCAL_MAX_RECORDS];  
     for (int i = 0; i < count; i++) {
         recordPointers[i] = &records[i];
     }
@@ -134,7 +136,7 @@ int main()
             }
 
             // Создаём копию массива указателей для сортировки
-            MarathonResult* sortArray[MAX_RECORDS];
+            MarathonResult* sortArray[LOCAL_MAX_RECORDS]; 
             for (int i = 0; i < count; i++) {
                 sortArray[i] = recordPointers[i];
             }

@@ -1,6 +1,9 @@
 #include "filter.h"
 #include "constants.h"
 #include <iostream>
+#include <sstream>  
+
+using namespace std;
 
 // Основная функция фильтрации
 MarathonResult** filterMarathonResults(
@@ -45,7 +48,7 @@ bool hasResultBetterThanThreshold(MarathonResult* element) {
     // Преобразуем пороговое время "02:50:00" в секунды
     int thresholdHours, thresholdMinutes, thresholdSeconds;
     char colon;
-    std::stringstream ss(THRESHOLD_TIME);
+    stringstream ss(THRESHOLD_TIME);  
     ss >> thresholdHours >> colon >> thresholdMinutes >> colon >> thresholdSeconds;
     int thresholdTotal = thresholdHours * 3600 + thresholdMinutes * 60 + thresholdSeconds;
 
