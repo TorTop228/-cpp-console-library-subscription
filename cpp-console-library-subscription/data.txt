@@ -1,0 +1,6 @@
+1 Ivanov Ivan Ivanovich 09:00:00 11:30:00 Spartak
+2 Petrov Petr Petrovich 09:05:00 12:00:00 Dynamo Moscow
+3 Sidorov Alexey Nikolaevich 09:10:00 11:45:00 Spartak
+4 Kuznetsova Anna Sergeevna 09:02:00 11:20:00 CSKA
+5 Smirnov Dmitry Vladimirovich 09:15:00 12:30:00 Spartak
+6 Popova Elena Alexandrovna 09:08:00 11:55:00 Lokomotiv
