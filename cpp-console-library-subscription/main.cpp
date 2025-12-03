@@ -3,15 +3,32 @@
 #include "file_reader.h"
 #include "constants.h"
 #include "filter.h"
+#include "sorter.h"
 
 using namespace std;
 
 void printMenu() {
-    cout << "\n=== Menu ===\n";
+    cout << "\n=== Main Menu ===\n";
     cout << "1. Show all records\n";
     cout << "2. Filter: Show only Spartak club members\n";
     cout << "3. Filter: Show results better than 2:50:00\n";
-    cout << "4. Exit\n";
+    cout << "4. Sort records\n";
+    cout << "5. Exit\n";
+    cout << "Choice: ";
+}
+
+void printSortMenu() {
+    cout << "\n=== Sorting ===\n";
+    cout << "Select sorting method:\n";
+    cout << "1. Bubble Sort\n";
+    cout << "2. Quick Sort\n";
+    cout << "Choice: ";
+}
+
+void printCompareMenu() {
+    cout << "\nSelect sorting criteria:\n";
+    cout << "1. By race time (ascending)\n";
+    cout << "2. By club and last name (ascending)\n";
     cout << "Choice: ";
 }
 
@@ -35,11 +52,22 @@ int main()
 
     cout << "Successfully read " << count << " records.\n";
 
-    // Создаём массив указателей для фильтрации
+    // Создаём массив указателей для операций
     MarathonResult* recordPointers[MAX_RECORDS];
     for (int i = 0; i < count; i++) {
         recordPointers[i] = &records[i];
     }
+
+    // Массивы указателей на функции
+    void (*sortFunctions[])(MarathonResult * [], int, int (*)(MarathonResult*, MarathonResult*)) = {
+        bubbleSort,
+        quickSort
+    };
+
+    int (*compareFunctions[])(MarathonResult*, MarathonResult*) = {
+        compareByRaceTime,
+        compareByClubAndLastName
+    };
 
     // Главное меню
     int choice;
@@ -90,7 +118,39 @@ int main()
         }
         break;
 
-        case 4:
+        case 4: // Сортировка
+        {
+            int sortChoice, compareChoice;
+
+            printSortMenu();
+            cin >> sortChoice;
+
+            printCompareMenu();
+            cin >> compareChoice;
+
+            if (sortChoice < 1 || sortChoice > 2 || compareChoice < 1 || compareChoice > 2) {
+                cout << "Invalid choice!\n";
+                break;
+            }
+
+            // Создаём копию массива указателей для сортировки
+            MarathonResult* sortArray[MAX_RECORDS];
+            for (int i = 0; i < count; i++) {
+                sortArray[i] = recordPointers[i];
+            }
+
+            // Вызываем выбранную функцию сортировки с выбранной функцией сравнения
+            sortFunctions[sortChoice - 1](sortArray, count, compareFunctions[compareChoice - 1]);
+
+            cout << "\nSorted records (" << count << "):\n";
+            cout << "----------------------------------------\n";
+            for (int i = 0; i < count; i++) {
+                sortArray[i]->print();
+            }
+        }
+        break;
+
+        case 5:
             cout << "Exiting...\n";
             break;
 
@@ -98,7 +158,7 @@ int main()
             cout << "Invalid choice!\n";
         }
 
-    } while (choice != 4);
+    } while (choice != 5);
 
     return 0;
 }
